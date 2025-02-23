@@ -42,3 +42,46 @@ echo "$usuario : $espacio"
 fi
 done
 ````
+## Conexiones con un archivo
+
+### servidores.txt
+
+````
+Tauro:192.162.1.1
+Tierra:172.26.0.33
+Sol:172.26.0.25
+````
+
+### Script
+
+````
+#!/bin/bash
+FECHA=$(date +%d-%m-%Y)
+echo "-----------------------"
+echo "INFORME DE SERVIDORES"
+echo "Fecha: $FECHA"
+echo "-----------------------"
+while IFS=':' read -r usuario IP; do
+if  ping -c 4 "$IP" > /dev/null 2>&1; then
+echo "$usuario : Hay conexion"
+else 
+echo "$usuario : No Hay conexion"
+fi
+done < servidores.txt
+
+````
+
+**⚠️ Advertencia importante:**
+
+**while** lee linea por linea, con IFS=':' asociamos el campo separador
+ y con read -r usuario IP; asociamos **usuario** y **IP** como dos variables
+ 
+ 
+ ```` 
+while IFS=':' read -r usuario IP;
+````
+**> /dev/null 2>&1**: elimina los errores en pantalla
+
+````
+if  ping -c 4 "$IP" > /dev/null 2>&1
+````
