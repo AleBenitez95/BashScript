@@ -75,6 +75,36 @@ done < servidores.txt
 
 **while** lee linea por linea, con IFS=':' asociamos el campo separador
  y con read -r usuario IP; asociamos **usuario** y **IP** como dos variables
+
+
+ ## Realizar copia de seguridad
+
+```
+#!/bin/bash
+# variable
+USUARIO=$1
+FECHA=$(date +%d-%m-%Y)
+#Definicion de funciones
+ComprobarUsuario (){
+    existe=$(getent passwd | grep $USUARIO)
+if [ -z $existe ]
+then 
+    echo "el usuario $USUARIO no existe"
+    exit 1
+fi
+}
+CopiaUsuario(){
+tar -zcvf /root/datos/$USUARIO-$FECHA.tar.gz /home/$USUARIO
+
+}
+#INICIO
+clear
+echo "Comprobación de usuario"
+ComprobarUsuario
+CopiaUsuario
+ls /root/datos
+````
+ 
  
  
  ```` 
