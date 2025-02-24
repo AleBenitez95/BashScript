@@ -76,6 +76,17 @@ done < servidores.txt
 **while** lee linea por linea, con IFS=':' asociamos el campo separador
  y con read -r usuario IP; asociamos **usuario** y **IP** como dos variables
 
+ 
+ ```` 
+while IFS=':' read -r usuario IP;
+````
+**> /dev/null 2>&1**: elimina los errores en pantalla
+
+````
+if  ping -c 4 "$IP" > /dev/null 2>&1
+````
+
+
 
  ## Realizar copia de seguridad
 
@@ -103,15 +114,4 @@ echo "Comprobación de usuario"
 ComprobarUsuario
 CopiaUsuario
 ls /root/datos
-````
- 
- 
- 
- ```` 
-while IFS=':' read -r usuario IP;
-````
-**> /dev/null 2>&1**: elimina los errores en pantalla
-
-````
-if  ping -c 4 "$IP" > /dev/null 2>&1
 ````
