@@ -71,6 +71,28 @@ done < servidores.txt
 
 ````
 
+### Script 2 Comprobar
+
+```
+#!/bin/bash
+# variables
+ARCHIVO=$1
+#comprobar parametros
+if [ ! $# -eq 1 ]
+then 
+    echo "No has introducido parámetros"
+    read -p "Introduzca la ruta del archivo:" ARCHIVO
+
+fi
+#Comprobar el archivo
+if [ ! -f $ARCHIVO ]
+then 
+    echo "El archivo $ARCHIVO no existe"
+    exit 1
+fi
+```
+
+
 **⚠️ Advertencia importante:**
 
 **while** lee linea por linea, con IFS=':' asociamos el campo separador
