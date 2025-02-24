@@ -137,3 +137,18 @@ ComprobarUsuario
 CopiaUsuario
 ls /root/datos
 ````
+## Restaurar Copia
+
+```
+#!/bin/bash
+DIRECTORIO="/root/datos"
+
+#INICIO
+clear
+echo "Restauración de copias de seguridad"
+read -p "Introduzca usuario:" usuario
+#Listado de copias
+ls $DIRECTORIO/$usuario-*
+read -p "Introduzca la copia a restaurar:" copia
+tar -zxvf $copia -C /
+```
